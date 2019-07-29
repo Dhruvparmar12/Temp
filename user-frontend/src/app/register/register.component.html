@@ -1,0 +1,81 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-6 mt-5 mx-auto">
+
+        <form [formGroup]="signupForm" (submit)="onRegister()" enctype="multipart/form-data">
+
+          <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+
+          <div class="form-group">
+            <label for="name">User name</label>
+            <input type="text" 
+            class="form-control" 
+            placeholder="Enter your User name" 
+            formControlName="u_name">
+          </div>
+          <span class="help-block" *ngIf="!signupForm.get('u_name').valid && signupForm.get('u_name').touched">*Please Enter User Name and Name Max Length 50 </span>
+         
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email"
+             class="form-control"
+              name="email"
+               placeholder="Enter Email Address"
+               formControlName="u_email">
+          </div>
+          <span class="help-block" *ngIf="!signupForm.get('u_email').valid && signupForm.get('u_email').touched">*Please Enter Valid Email </span>
+          
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" 
+            class="form-control"
+            placeholder="Enter Password" 
+            formControlName="u_password" >
+          </div>
+          <span class="help-block" *ngIf="!signupForm.get('u_password').valid && signupForm.get('u_password').touched">*Required, At-least 1 Capital, At-least 1 number, At-least 1 special char</span>
+         
+          <div class="form-group">
+            <label for="password">Re-Password</label>
+            <input type="password"
+             class="form-control"
+              name="re-password" 
+              
+              placeholder="Renter-Password"
+              formControlName="c_password">
+          </div>          
+    
+     <span class="help-block" *ngIf="signupForm.get('c_password').valid && signupForm.get('c_password').touched && signupForm.get('c_password').value !== signupForm.get('u_password').value">*Required Same password as above</span>
+         
+          <div class="form-group">
+            <label for="password">Profile: </label>
+            <input type="file" 
+            (change)="onFileSelect($event)"
+            class="form-control"            
+            formControlName="u_profile">
+          </div>
+          <span class="help-block" *ngIf="!signupForm.get('u_profile').valid && signupForm.get('u_profile').touched">*Please Select Profile Picture</span>
+          
+          <div class="form-group">
+            <label for="password">Mobile</label>
+            <input type="number"
+             class="form-control"
+             formControlName="u_mobile"
+             placeholder="Enter Mobile Number" >
+          </div>
+          <span class="help-block" *ngIf="!signupForm.get('u_mobile').valid && signupForm.get('u_mobile').touched">*Mobile Number maximum 13 digit</span>
+          <div class="form-check">
+            <input type="checkbox"
+             class="form-check-input"
+              id="exampleCheck1"
+              formControlName="checkbox" 
+              value="true">
+            <label class="form-check-label" for="exampleCheck1" >Terms & Condition</label>
+          </div>
+          <span class="help-block" *ngIf="!signupForm.get('checkbox').valid && signupForm.get('checkbox').touched" >*Please select terams & condition</span>
+          <br>
+          <br>
+          <button type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="!signupForm.valid">Register!</button>
+        </form>
+      </div>
+    </div>
+  </div>
